@@ -1,0 +1,49 @@
+def arithmetic_arranger(problems_list, answers=False):
+    output_list = []
+    if len(problems_list) > 5:
+        return "Error: too many problems"
+    for problem in problems_list:
+        problem = problem.split()
+        try:
+            int(problem[0])   
+            int(problem[2])    
+        except:
+            return "Error: Numbers must only contain digits"
+        if len(problem) != 3 or len(problem[0]) > 4 or len(problem[2]) > 4:
+            return "Error: Numbers cannot be more than four digits"
+        elif problem[1] != '+' and problem[1] != '-':
+            return "Error: Operator must be '+' or '-'"
+        individual_problem = []
+        individual_problem.append(problem[0])
+        individual_problem.append(problem[1])
+        individual_problem.append(problem[2])
+        output_list.append(individual_problem)
+        
+    
+    set_length = len(output_list)
+    print(output_list), print(set_length)
+
+    adjusted_output_list = []
+
+    for i in range(set_length):
+        if i == 0:
+            if len(output_list[i][0]) >= len(output_list[i][2]):
+                adjusted_top = output_list[i][0].rjust(len(output_list[i][0])+2)
+                adjusted_bottom = output_list[i][2].rjust(len(output_list[i][0])-len(output_list[i][2])+1)
+                adjusted_problem = []
+                adjusted_problem.append(adjusted_top)
+                adjusted_problem.append(output_list[i][1])
+                adjusted_problem.append(adjusted_bottom)
+                adjusted_output_list.append(adjusted_problem)
+                print(adjusted_top), print(adjusted_bottom)
+                print(adjusted_output_list)
+
+
+
+arithmetic_arranger(["3200 + 698", "3801 - 2", "45 + 43", "123 + 49"])
+    
+    
+    # i = 0
+    # while i < set_length:
+    #     for item in output_list:
+
