@@ -49,10 +49,36 @@ def arithmetic_arranger(problems_list, answers=False):
         operands.append(problem[1])
         bottom_number.append(problem[2])
     
+    print(bottom_number)
+
+    for i in range(4):    
+        if len(top_number[i]) >= len(bottom_number[i]):
+            if i == 0:
+                top_number[i] = top_number[i].rjust(len(top_number[i])+2)
+                bottom_number[i] = bottom_number[i].rjust(len(top_number[i])-len(bottom_number[i])+1)
+            else:
+                top_number[i] = top_number[i].rjust(len(top_number[i])+6)
+                operands[i] = operands[i].rjust(5)
+                bottom_number[i] = bottom_number[i].rjust(len(top_number[i])-len(bottom_number[i])+1)
+        elif len(top_number[i]) < len(bottom_number[i]):
+            if i == 0:
+                top_number[i] = top_number[i].rjust(len(bottom_number[i])-len(top_number[i])+2)
+                bottom_number[i] = bottom_number[i].rjust(len(bottom_number[i])+1)
+            else:
+                top_number[i] = top_number[i].rjust(len(bottom_number[i])-len(top_number[i])+6)
+                operands[i] = operands[i].rjust(5)
+                bottom_number[i] = bottom_number[i].rjust(len(bottom_number[i])+1)
+            
+
+    output = ' '
+    for i in top_number:
+        output = output + i
+    output = output + '\n'
+    output = output + operands[0] + bottom_number[0] + f'{operands[1]}' + bottom_number[1]
     
-    
-    
-    
-    print(top_number),print(operands),print(bottom_number)
+    print(output)
+    print(top_number)
+    print(bottom_number)
+    print(operands)
 
 arithmetic_arranger(["32 + 698", "3801 - 2", "45 + 43", "123 + 49"])
