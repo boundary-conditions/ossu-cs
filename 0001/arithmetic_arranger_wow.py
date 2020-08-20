@@ -72,7 +72,7 @@ def arithmetic_arranger(problems_list, answers=False):
             answer = x + y
         else:
             answer = x - y
-        answers_list.append(answer)
+        answers_list.append(str(answer))
         i += 1
 
     #Operand spacing
@@ -134,16 +134,24 @@ def arithmetic_arranger(problems_list, answers=False):
             print(f"{adjusted_top_numbers[0]}\n{bottom_line[0]}{bottom_line[1]}\n{len(bottom_line[0] + bottom_line[1])*'-'}")
     else:
         if number_of_problems == 5:
-            print(f"{adjusted_top_numbers[0]}{adjusted_top_numbers[1]}{adjusted_top_numbers[2]}{adjusted_top_numbers[3]}{adjusted_top_numbers[4]}\n{bottom_line[0]}{bottom_line[1]}{bottom_line[2]}{bottom_line[3]}{bottom_line[4]}{bottom_line[5]}{bottom_line[6]}{bottom_line[7]}{bottom_line[8]}{bottom_line[9]}\n{len(bottom_line[0] + bottom_line[1])*'-'}    -{len(bottom_line[3])*'-'}    -{len(bottom_line[5])*'-'}    -{len(bottom_line[7])*'-'}    -{len(bottom_line[9])*'-'}")
+            print(f"{adjusted_top_numbers[0]}{adjusted_top_numbers[1]}{adjusted_top_numbers[2]}{adjusted_top_numbers[3]}{adjusted_top_numbers[4]}\n{bottom_line[0]}{bottom_line[1]}{bottom_line[2]}{bottom_line[3]}{bottom_line[4]}{bottom_line[5]}{bottom_line[6]}{bottom_line[7]}{bottom_line[8]}{bottom_line[9]}\n{len(bottom_line[0] + bottom_line[1])*'-'}    -{len(bottom_line[3])*'-'}    -{len(bottom_line[5])*'-'}    -{len(bottom_line[7])*'-'}    -{len(bottom_line[9])*'-'}\n{answers_list[0].rjust(len(bottom_line[0] + bottom_line[1]))}    {answers_list[1].rjust(len(bottom_line[3])+1)}    {answers_list[2].rjust(len(bottom_line[5])+1)}    {answers_list[3].rjust(len(bottom_line[7])+1)}    {answers_list[4].rjust(len(bottom_line[9])+1)}")
+        elif number_of_problems == 4:
+            print(f"{adjusted_top_numbers[0]}{adjusted_top_numbers[1]}{adjusted_top_numbers[2]}{adjusted_top_numbers[3]}\n{bottom_line[0]}{bottom_line[1]}{bottom_line[2]}{bottom_line[3]}{bottom_line[4]}{bottom_line[5]}{bottom_line[6]}{bottom_line[7]}\n{len(bottom_line[0] + bottom_line[1])*'-'}    -{len(bottom_line[3])*'-'}    -{len(bottom_line[5])*'-'}    -{len(bottom_line[7])*'-'}\n{answers_list[0].rjust(len(bottom_line[0] + bottom_line[1]))}    {answers_list[1].rjust(len(bottom_line[3])+1)}    {answers_list[2].rjust(len(bottom_line[5])+1)}    {answers_list[3].rjust(len(bottom_line[7])+1)}")
+        elif number_of_problems == 3:
+            print(f"{adjusted_top_numbers[0]}{adjusted_top_numbers[1]}{adjusted_top_numbers[2]}\n{bottom_line[0]}{bottom_line[1]}{bottom_line[2]}{bottom_line[3]}{bottom_line[4]}{bottom_line[5]}\n{len(bottom_line[0] + bottom_line[1])*'-'}    -{len(bottom_line[3])*'-'}    -{len(bottom_line[5])*'-'}\n{answers_list[0].rjust(len(bottom_line[0] + bottom_line[1]))}    {answers_list[1].rjust(len(bottom_line[3])+1)}    {answers_list[2].rjust(len(bottom_line[5])+1)}")
+        elif number_of_problems == 2:
+            print(f"{adjusted_top_numbers[0]}{adjusted_top_numbers[1]}\n{bottom_line[0]}{bottom_line[1]}{bottom_line[2]}{bottom_line[3]}\n{len(bottom_line[0] + bottom_line[1])*'-'}    -{len(bottom_line[3])*'-'}\n{answers_list[0].rjust(len(bottom_line[0] + bottom_line[1]))}    {answers_list[1].rjust(len(bottom_line[3])+1)}")
+        elif number_of_problems == 1:
+            print(f"{adjusted_top_numbers[0]}\n{bottom_line[0]}{bottom_line[1]}\n{len(bottom_line[0] + bottom_line[1])*'-'}\n{answers_list[0].rjust(len(bottom_line[0] + bottom_line[1]))}")
 
     
     
     
 
 
-arithmetic_arranger(["32 + 698", "3801 - 2", "45 + 430", "123 + 49", "4567 + 1"])
-arithmetic_arranger(["32 + 698", "3801 - 2", "45 + 430", "123 + 49"])
-arithmetic_arranger(["32 + 698", "3801 - 2", "45 + 430"])
-arithmetic_arranger(["32 + 698", "3801 - 2"])
-arithmetic_arranger(["32 + 698"])
+arithmetic_arranger(["32 + 698", "3801 - 2", "45 + 430", "123 + 49", "4567 + 1"],answers=True)
+arithmetic_arranger(["32 + 698", "3801 - 2", "45 + 430", "123 + 49"], answers=True)
+arithmetic_arranger(["32 + 698", "3801 - 2", "45 + 430"],answers=True)
+arithmetic_arranger(["32 + 698", "3801 - 2"],answers=True)
+arithmetic_arranger(["32 + 698"],answers=True)
 

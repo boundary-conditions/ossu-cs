@@ -30,9 +30,13 @@ The unit tests for this project are in test_module.py. We imported the tests fro
 
 def arithmetic_arranger(problems_list, answers=False):
     output_list = []
-    top_number = []
+    top_numbers = []
     operands = []
-    bottom_number = []
+    bottom_numbers = []
+    adjusted_top_numbers = []
+    adjusted_operands = []
+    adjusted_bottom_numbers =[]
+    answers_list = []
     if len(problems_list) > 5:
         return "Error: too many problems"
     for problem in problems_list:
@@ -46,48 +50,108 @@ def arithmetic_arranger(problems_list, answers=False):
             return "Error: Numbers cannot be more than four digits"
         elif problem[1] != '+' and problem[1] != '-':
             return "Error: Operator must be '+' or '-'"
-        
+        #end of error checking
+
         output_list.append(problem[0])
         output_list.append(problem[1])
         output_list.append(problem[2])
-        top_number.append(problem[0])
+        top_numbers.append(problem[0])
         operands.append(problem[1])
-        bottom_number.append(problem[2])
+        bottom_numbers.append(problem[2])
+
+    number_of_problems = int(len(output_list) / 3)
+
+    #define answers and store in list
+
+    i = 0
+    while i < number_of_problems:
+        x = int(output_list.pop(0))
+        op = output_list.pop(0)
+        y = int(output_list.pop(0))
+        if op == '+':
+            answer = x + y
+        else:
+            answer = x - y
+        answers_list.append(str(answer))
+        i += 1
+
+    #Operand spacing
+
+    for i in range(number_of_problems):
+        if i == 0:
+            adjusted_operands.append(operands[i])
+            continue
+        adjusted_operand = operands[i].rjust(5)
+        adjusted_operands.append(adjusted_operand)
+    
+    #spacing for top numbers
+
+    for i in range(number_of_problems):
+        top_length = len(top_numbers[i])
+        bottom_length = len(bottom_numbers[i])
+        if i == 0:
+            if top_length < bottom_length:
+                adjusted_top_number = top_numbers[i].rjust(bottom_length + 2)
+                adjusted_top_numbers.append(adjusted_top_number)
+            elif top_length >= bottom_length:
+                adjusted_top_number = top_numbers[i].rjust(top_length + 2) #check
+        else:
+            if top_length < bottom_length: #check
+                adjusted_top_number = top_numbers[i].rjust(bottom_length + 6)
+                adjusted_top_numbers.append(adjusted_top_number)
+            elif top_length >= bottom_length:
+                adjusted_top_number = top_numbers[i].rjust(top_length + 6) #check
+                adjusted_top_numbers.append(adjusted_top_number)
+
+    #spacing the bottom numbers, could combine with top numbers
+
+    for i in range(number_of_problems):
+        top_length = len(top_numbers[i])
+        bottom_length = len(bottom_numbers[i])
+        if top_length <= bottom_length:
+            adjusted_bottom_number = bottom_numbers[i].rjust(bottom_length + 1)
+            adjusted_bottom_numbers.append(adjusted_bottom_number)
+        elif top_length > bottom_length:
+            adjusted_bottom_number = bottom_numbers[i].rjust(top_length + 1)
+            adjusted_bottom_numbers.append(adjusted_bottom_number)  
+
+    bottom_line = []
+    for i in range(number_of_problems):
+        bottom_line.append(adjusted_operands[i])
+        bottom_line.append(adjusted_bottom_numbers[i])
+
+    #final print statements are long long long
+    if answers == False:
+        if number_of_problems == 5:
+            return(f"{adjusted_top_numbers[0]}{adjusted_top_numbers[1]}{adjusted_top_numbers[2]}{adjusted_top_numbers[3]}{adjusted_top_numbers[4]}\n{bottom_line[0]}{bottom_line[1]}{bottom_line[2]}{bottom_line[3]}{bottom_line[4]}{bottom_line[5]}{bottom_line[6]}{bottom_line[7]}{bottom_line[8]}{bottom_line[9]}\n{len(bottom_line[0] + bottom_line[1])*'-'}    -{len(bottom_line[3])*'-'}    -{len(bottom_line[5])*'-'}    -{len(bottom_line[7])*'-'}    -{len(bottom_line[9])*'-'}")
+        elif number_of_problems == 4:
+            return(f"{adjusted_top_numbers[0]}{adjusted_top_numbers[1]}{adjusted_top_numbers[2]}{adjusted_top_numbers[3]}\n{bottom_line[0]}{bottom_line[1]}{bottom_line[2]}{bottom_line[3]}{bottom_line[4]}{bottom_line[5]}{bottom_line[6]}{bottom_line[7]}\n{len(bottom_line[0] + bottom_line[1])*'-'}    -{len(bottom_line[3])*'-'}    -{len(bottom_line[5])*'-'}    -{len(bottom_line[7])*'-'}")
+        elif number_of_problems == 3:
+            print(f"{adjusted_top_numbers[0]}{adjusted_top_numbers[1]}{adjusted_top_numbers[2]}\n{bottom_line[0]}{bottom_line[1]}{bottom_line[2]}{bottom_line[3]}{bottom_line[4]}{bottom_line[5]}\n{len(bottom_line[0] + bottom_line[1])*'-'}    -{len(bottom_line[3])*'-'}    -{len(bottom_line[5])*'-'}")
+        elif number_of_problems == 2:
+            print(f"{adjusted_top_numbers[0]}{adjusted_top_numbers[1]}\n{bottom_line[0]}{bottom_line[1]}{bottom_line[2]}{bottom_line[3]}\n{len(bottom_line[0] + bottom_line[1])*'-'}    -{len(bottom_line[3])*'-'}")
+        elif number_of_problems == 1:
+            print(f"{adjusted_top_numbers[0]}\n{bottom_line[0]}{bottom_line[1]}\n{len(bottom_line[0] + bottom_line[1])*'-'}")
+    else:
+        if number_of_problems == 5:
+            print(f"{adjusted_top_numbers[0]}{adjusted_top_numbers[1]}{adjusted_top_numbers[2]}{adjusted_top_numbers[3]}{adjusted_top_numbers[4]}\n{bottom_line[0]}{bottom_line[1]}{bottom_line[2]}{bottom_line[3]}{bottom_line[4]}{bottom_line[5]}{bottom_line[6]}{bottom_line[7]}{bottom_line[8]}{bottom_line[9]}\n{len(bottom_line[0] + bottom_line[1])*'-'}    -{len(bottom_line[3])*'-'}    -{len(bottom_line[5])*'-'}    -{len(bottom_line[7])*'-'}    -{len(bottom_line[9])*'-'}\n{answers_list[0].rjust(len(bottom_line[0] + bottom_line[1]))}    {answers_list[1].rjust(len(bottom_line[3])+1)}    {answers_list[2].rjust(len(bottom_line[5])+1)}    {answers_list[3].rjust(len(bottom_line[7])+1)}    {answers_list[4].rjust(len(bottom_line[9])+1)}")
+        elif number_of_problems == 4:
+            print(f"{adjusted_top_numbers[0]}{adjusted_top_numbers[1]}{adjusted_top_numbers[2]}{adjusted_top_numbers[3]}\n{bottom_line[0]}{bottom_line[1]}{bottom_line[2]}{bottom_line[3]}{bottom_line[4]}{bottom_line[5]}{bottom_line[6]}{bottom_line[7]}\n{len(bottom_line[0] + bottom_line[1])*'-'}    -{len(bottom_line[3])*'-'}    -{len(bottom_line[5])*'-'}    -{len(bottom_line[7])*'-'}\n{answers_list[0].rjust(len(bottom_line[0] + bottom_line[1]))}    {answers_list[1].rjust(len(bottom_line[3])+1)}    {answers_list[2].rjust(len(bottom_line[5])+1)}    {answers_list[3].rjust(len(bottom_line[7])+1)}")
+        elif number_of_problems == 3:
+            print(f"{adjusted_top_numbers[0]}{adjusted_top_numbers[1]}{adjusted_top_numbers[2]}\n{bottom_line[0]}{bottom_line[1]}{bottom_line[2]}{bottom_line[3]}{bottom_line[4]}{bottom_line[5]}\n{len(bottom_line[0] + bottom_line[1])*'-'}    -{len(bottom_line[3])*'-'}    -{len(bottom_line[5])*'-'}\n{answers_list[0].rjust(len(bottom_line[0] + bottom_line[1]))}    {answers_list[1].rjust(len(bottom_line[3])+1)}    {answers_list[2].rjust(len(bottom_line[5])+1)}")
+        elif number_of_problems == 2:
+            print(f"{adjusted_top_numbers[0]}{adjusted_top_numbers[1]}\n{bottom_line[0]}{bottom_line[1]}{bottom_line[2]}{bottom_line[3]}\n{len(bottom_line[0] + bottom_line[1])*'-'}    -{len(bottom_line[3])*'-'}\n{answers_list[0].rjust(len(bottom_line[0] + bottom_line[1]))}    {answers_list[1].rjust(len(bottom_line[3])+1)}")
+        elif number_of_problems == 1:
+            print(f"{adjusted_top_numbers[0]}\n{bottom_line[0]}{bottom_line[1]}\n{len(bottom_line[0] + bottom_line[1])*'-'}\n{answers_list[0].rjust(len(bottom_line[0] + bottom_line[1]))}")
+
     
     
-    print(bottom_number)
-
-    for i in range(0,4): 
-        top = len(top_number[i])
-        bottom = len(bottom_number[i])   
-        if top >= bottom:
-            if i == 0:
-                top_number[i] = top_number[i].rjust(top+2)
-                bottom_number[i] = bottom_number[i].rjust(top - bottom + 1)
-            else:
-                top_number[i] = top_number[i].rjust(top+6)
-                operands[i] = operands[i].rjust(5)
-                bottom_number[i] = bottom_number[i].rjust(top - bottom + 1)
-        elif top < bottom:
-            if i == 0:
-                top_number[i] = top_number[i].rjust(bottom-top+2)
-                bottom_number[i] = bottom_number[i].rjust(bottom+1)
-            else:
-                top_number[i] = top_number[i].rjust(bottom-top+6)
-                operands[i] = operands[i].rjust(5)
-                bottom_number[i] = bottom_number[i].rjust(bottom+1)
-            
-
-    output = ''
-    for i in top_number:
-        output = output + i
-    output = output + '\n'
-    for i in range(len(bottom_number)):
-        output = output + operands[i] + bottom_number[i]
     
-    print(output)
-    print(top_number)
-    print(bottom_number)
-    print(operands)
 
-arithmetic_arranger(["32 + 698", "3801 - 2", "45 + 43", "123 + 49"])
+
+arithmetic_arranger(["32 + 698", "3801 - 2", "45 + 430", "123 + 49", "4567 + 1"],answers=True)
+arithmetic_arranger(["32 + 698", "3801 - 2", "45 + 430", "123 + 49"], answers=True)
+arithmetic_arranger(["32 + 698", "3801 - 2", "45 + 430"],answers=True)
+arithmetic_arranger(["32 + 698", "3801 - 2"],answers=True)
+arithmetic_arranger(["32 + 698"],answers=True)
+
