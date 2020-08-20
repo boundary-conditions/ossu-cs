@@ -36,6 +36,7 @@ def arithmetic_arranger(problems_list, answers=False):
     adjusted_top_numbers = []
     adjusted_operands = []
     adjusted_bottom_numbers =[]
+    answers_list = []
     if len(problems_list) > 5:
         return "Error: too many problems"
     for problem in problems_list:
@@ -59,7 +60,6 @@ def arithmetic_arranger(problems_list, answers=False):
         bottom_numbers.append(problem[2])
 
     number_of_problems = int(len(output_list) / 3)
-    print(number_of_problems)
 
     for i in range(number_of_problems):
         if i == 0:
@@ -95,16 +95,27 @@ def arithmetic_arranger(problems_list, answers=False):
             adjusted_bottom_number = bottom_numbers[i].rjust(top_length + 1)
             adjusted_bottom_numbers.append(adjusted_bottom_number)  
 
-
-
     bottom_line = []
     for i in range(number_of_problems):
         bottom_line.append(adjusted_operands[i])
         bottom_line.append(adjusted_bottom_numbers[i])
+
+    if number_of_problems == 5:
+        print(f"{adjusted_top_numbers[0]}{adjusted_top_numbers[1]}{adjusted_top_numbers[2]}{adjusted_top_numbers[3]}{adjusted_top_numbers[4]}\n{bottom_line[0]}{bottom_line[1]}{bottom_line[2]}{bottom_line[3]}{bottom_line[4]}{bottom_line[5]}{bottom_line[6]}{bottom_line[7]}{bottom_line[8]}{bottom_line[9]}\n{len(bottom_line[0] + bottom_line[1])*'-'}    -{len(bottom_line[3])*'-'}    -{len(bottom_line[5])*'-'}    -{len(bottom_line[7])*'-'}    -{len(bottom_line[9])*'-'}")
+    elif number_of_problems == 4:
+        print(f"{adjusted_top_numbers[0]}{adjusted_top_numbers[1]}{adjusted_top_numbers[2]}{adjusted_top_numbers[3]}\n{bottom_line[0]}{bottom_line[1]}{bottom_line[2]}{bottom_line[3]}{bottom_line[4]}{bottom_line[5]}{bottom_line[6]}{bottom_line[7]}\n{len(bottom_line[0] + bottom_line[1])*'-'}    -{len(bottom_line[3])*'-'}    -{len(bottom_line[5])*'-'}    -{len(bottom_line[7])*'-'}")
+    elif number_of_problems == 3:
+        print(f"{adjusted_top_numbers[0]}{adjusted_top_numbers[1]}{adjusted_top_numbers[2]}\n{bottom_line[0]}{bottom_line[1]}{bottom_line[2]}{bottom_line[3]}{bottom_line[4]}{bottom_line[5]}\n{len(bottom_line[0] + bottom_line[1])*'-'}    -{len(bottom_line[3])*'-'}    -{len(bottom_line[5])*'-'}")
+    elif number_of_problems == 2:
+        print(f"{adjusted_top_numbers[0]}{adjusted_top_numbers[1]}\n{bottom_line[0]}{bottom_line[1]}{bottom_line[2]}{bottom_line[3]}\n{len(bottom_line[0] + bottom_line[1])*'-'}    -{len(bottom_line[3])*'-'}")
+    elif number_of_problems == 1:
+        print(f"{adjusted_top_numbers[0]}\n{bottom_line[0]}{bottom_line[1]}\n{len(bottom_line[0] + bottom_line[1])*'-'}")
+
     
-    print(bottom_line)
-
-    print(f"{adjusted_top_numbers[0]}{adjusted_top_numbers[1]}{adjusted_top_numbers[2]}{adjusted_top_numbers[3]}\n{bottom_line[0]}{bottom_line[1]}{bottom_line[2]}{bottom_line[3]}{bottom_line[4]}{bottom_line[5]}{bottom_line[6]}{bottom_line[7]}")
 
 
+arithmetic_arranger(["32 + 698", "3801 - 2", "45 + 430", "123 + 49", "4567 + 1"])
 arithmetic_arranger(["32 + 698", "3801 - 2", "45 + 430", "123 + 49"])
+arithmetic_arranger(["32 + 698", "3801 - 2", "45 + 430"])
+arithmetic_arranger(["32 + 698", "3801 - 2"])
+arithmetic_arranger(["32 + 698"])
