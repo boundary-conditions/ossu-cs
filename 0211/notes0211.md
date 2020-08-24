@@ -1,0 +1,1 @@
+Commenting done for MATLAB Week 1 in the laff_copy.m file

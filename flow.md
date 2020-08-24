@@ -42,9 +42,10 @@
 
 Semester 1:
 
-[0001] June 15 - August 19
+[0001] June 15 - August
 **[Python for Everybody](https://www.py4e.com/)
-    freecodecamp.com
+    Project 1: 0001/arithmetic_calculator.py August 20
+    Project 2: 
 
 [0002] August 18 - 
 **[The Missing Semester of Your CS Education](https://missing.csail.mit.edu/)
