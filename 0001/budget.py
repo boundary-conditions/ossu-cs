@@ -43,7 +43,18 @@ class Category:
             return True
         else:
             return False
-            
-    
-    
         
+    def check_funds(self, amount):
+        total_funds = self.get_balance()
+        if total_funds >= amount:
+            return True
+        else:
+            return False
+        
+    def __str__(self):
+        s = "*" * ((30 - len(self.name))//2) + str(self.name)
+        s = s + "*" * (30 - len(s)) + "\n"
+        for item in self.ledger:
+            s += item['description'][:23].ljust(23) + "{:.2f}".format(item['amount']).rjust(7)+"\n"
+        s += "Total: " + str(self.get_balance())
+        return s
