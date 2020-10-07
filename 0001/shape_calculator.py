@@ -30,7 +30,7 @@ class Rectangle:
     
     
     def get_diagonal(self):
-        diagonal = (self.width **2 + self.width ** 2) ** .5
+        diagonal = (self.width ** 2 + self.width ** 2) ** .5
         return diagonal
         
     
@@ -40,17 +40,13 @@ class Rectangle:
         else:
             picture_string = "*" * self.width + "\n"
             picture_string = picture_string * self.height
-            return picture_string
+            return picture_string 
     
-    
-    def get_amount_inside():
-        """
-        Takes another shape (square or rectangle) as an argument. 
-        Returns the number of times the passed in shape could fit inside the shape 
-        (with no rotations). For instance, a rectangle with a width of 4 and a 
-        height of 8 could fit in two squares with sides of 4.
-        """
-        pass
+    def get_amount_inside(self, other_shape):
+        horizontal = self.width // other_shape.width
+        vertical = self.height // other_shape.height
+        total = horizontal * vertical
+        return total
     
     def __str__(self):
         return f"Rectangle(width={self.width}, height={self.height})"
