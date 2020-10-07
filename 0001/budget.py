@@ -20,13 +20,13 @@ class Category:
         return total_funds
     
     def deposit(self, amount, description=""):
-        self.ledger.append({"amount": int(amount), "description": description})
+        self.ledger.append({"amount": float(amount), "description": description})
         
     def withdraw(self, amount, description=""):
         total_funds = self.get_balance()
-        if int(amount) <= total_funds:
-            amount = int(amount) * -1
-            self.ledger.append({"amount": int(amount), "description": description})
+        if float(amount) <= total_funds:
+            amount = float(amount) * -1
+            self.ledger.append({"amount": float(amount), "description": description})
             return True
         else:
             return False
@@ -34,11 +34,11 @@ class Category:
     def transfer(self, amount, target):
         total_funds = self.get_balance()
         target_category = target.name
-        if int(amount) <= total_funds:
-            target.ledger.append({"amount": int(amount), 
+        if float(amount) <= total_funds:
+            target.ledger.append({"amount": float(amount), 
                                 "description": f"Transfer from {self.name}"})
-            amount = int(amount) * -1
-            self.ledger.append({"amount": int(amount), 
+            amount = float(amount) * -1
+            self.ledger.append({"amount": float(amount), 
                                 "description": f"Transfer to {target_category}"})
             return True
         else:
