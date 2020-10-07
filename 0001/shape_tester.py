@@ -19,3 +19,7 @@ rect.set_height(12)
 print(rect.get_perimeter())
 
 
+print(rect.get_picture())
+rect.set_height(51)
+print(rect.get_picture())
+print(rect)

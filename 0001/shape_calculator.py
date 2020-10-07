@@ -35,14 +35,13 @@ class Rectangle:
         
     
     def get_picture(self):
-        """
-        Returns a string that represents the shape using lines of "*". 
-        The number of lines should be equal to the height and the number of "*" 
-        in each line should be equal to the width. There should be a new line (\n) 
-        at the end of each line. If the width or height is larger than 50, 
-        this should return the string: "Too big for picture.".
-        """
-        pass
+        if self.width > 50 or self.height > 50:
+            return "Too big for picture"
+        else:
+            picture_string = "*" * self.width + "\n"
+            picture_string = picture_string * self.height
+            return picture_string
+    
     
     def get_amount_inside():
         """
@@ -54,6 +53,7 @@ class Rectangle:
         pass
     
     def __str__(self):
+        return f"Rectangle(width={self.width}, height={self.height})"
         """
         Additionally, if an instance of a Rectangle is represented as a string, 
         it should look like: Rectangle(width=5, height=10)
